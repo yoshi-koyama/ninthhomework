@@ -1,4 +1,6 @@
-package com.example.ninthhomework;
+package com.example.ninthhomework.domain.user.service;
+
+import com.example.ninthhomework.domain.user.model.Characters;
 
 import java.util.List;
 

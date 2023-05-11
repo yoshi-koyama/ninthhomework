@@ -1,5 +1,7 @@
-package com.example.ninthhomework;
+package com.example.ninthhomework.domain.user.service;
 
+import com.example.ninthhomework.domain.user.model.Characters;
+import com.example.ninthhomework.mapper.CharactersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,6 @@ public class CharactersServiceImpl implements CharactersService {
 
     @Override
     public List<Characters> getCharacters() {
-        return charactersMapper.findMany();
+        return charactersMapper.findAll();
     }
 }
