@@ -7,8 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface CharactersMapper {
-    // public int insertOne(Characters characters);
-
-    //@Select("select * from characters")
     public List<Characters> findAll();
+
+    public List<Characters> searchByAge(Integer age);
 }

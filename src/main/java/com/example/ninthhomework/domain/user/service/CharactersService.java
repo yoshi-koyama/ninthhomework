@@ -8,4 +8,6 @@ public interface CharactersService {
 //    public void signup(Characters characters);
 
     public List<Characters> getCharacters();
+
+    public List<Characters> findByAge(Integer age);
 }

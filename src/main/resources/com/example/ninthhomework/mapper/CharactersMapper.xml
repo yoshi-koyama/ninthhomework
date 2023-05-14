@@ -4,5 +4,8 @@
     <select id="findAll" resultType="com.example.ninthhomework.domain.user.model.Characters">
         SELECT * FROM characters
     </select>
+    <select id="searchByAge" resultType="com.example.ninthhomework.domain.user.model.Characters">
+        SELECT * FROM characters WHERE age > #{age}
+    </select>
 </mapper>
 

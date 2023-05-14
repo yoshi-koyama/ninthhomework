@@ -10,16 +10,18 @@ import java.util.List;
 @Service
 public class CharactersServiceImpl implements CharactersService {
     @Autowired
-    //mapperクラスをフィールドにおく
     private CharactersMapper charactersMapper;
-
-//    @Override
-//    public void signup(Characters characters) {
-//        charactersMapper.insertOne(characters);
-//    }
 
     @Override
     public List<Characters> getCharacters() {
         return charactersMapper.findAll();
+    }
+
+    public List<Characters> findByAge(Integer age) {
+        if (age != null) {
+            return charactersMapper.searchByAge(age);
+        } else {
+            return charactersMapper.findAll();
+        }
     }
 }
