@@ -1,7 +1,5 @@
-package com.example.ninthhomework;
+package com.example.ninthhomework.domain.user.model;
 
-//@Data Lombookダウンロード　無闇にやらない方がいいのか？
-//これはエンティティクラス
 public class Characters {
     private int id;
 

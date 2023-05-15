@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class NinthhomeworkApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(NinthhomeworkApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(NinthhomeworkApplication.class, args);
+    }
 
 }
