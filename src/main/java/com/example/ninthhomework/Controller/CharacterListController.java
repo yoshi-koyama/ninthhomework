@@ -31,7 +31,7 @@ public class CharacterListController {
     }
 
     //指定された年齢より年上のキャラクターを返す
-    @GetMapping("/characters/find")
+    @GetMapping("/characters/age")
     public List<CharactersResponse> charactersFindAge(@RequestParam(name = "age", required = false) Integer age) {
         return charactersService.findByAge(age).stream()
                 .map(y -> new CharactersResponse(y.getName(), y.getAge()))
