@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CharactersServiceImpl implements CharactersService {
@@ -18,10 +19,10 @@ public class CharactersServiceImpl implements CharactersService {
     }
 
     public List<Characters> findByAge(Integer age) {
-        if (age != null) {
-            return charactersMapper.searchByAge(age);
-        } else {
+        if (Objects.isNull(age)) {
             return charactersMapper.findAll();
+        } else {
+            return charactersMapper.searchByAge(age);
         }
     }
 }
