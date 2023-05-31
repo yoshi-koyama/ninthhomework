@@ -1,11 +1,16 @@
-package com.example.ninthhomework.domain.user.model;
+package com.example.ninthhomework.Controller;
 
-public class Characters {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public class CreateForm {
     private int id;
+    @NotBlank
     private String name;
+    @NotNull
     private Integer age;
 
-    public Characters(int id, String name, Integer age) {
+    public CreateForm(int id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;

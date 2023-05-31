@@ -1,5 +1,6 @@
 package com.example.ninthhomework.domain.user.service;
 
+import com.example.ninthhomework.Controller.CreateForm;
 import com.example.ninthhomework.domain.user.model.Characters;
 import com.example.ninthhomework.mapper.CharactersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,11 @@ public class CharactersServiceImpl implements CharactersService {
         } else {
             return charactersMapper.searchByAge(age);
         }
+    }
+
+    public Characters createCharacter(CreateForm createForm) {
+        Characters characters = new Characters(createForm.getId(), createForm.getName(), createForm.getAge());
+        charactersMapper.createCharacter(characters);
+        return characters;
     }
 }

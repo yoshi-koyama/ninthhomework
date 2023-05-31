@@ -10,4 +10,7 @@ public interface CharactersMapper {
     public List<Characters> findAll();
 
     public List<Characters> searchByAge(Integer age);
+
+    public void createCharacter(Characters characters);
+
 }
