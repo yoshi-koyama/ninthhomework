@@ -14,5 +14,8 @@
             useGeneratedKeys="true" keyProperty="id">
         INSERT INTO characters(name, age) VALUES(#{name}, #{age})
     </insert>
+    <update id="updateCharacter" parameterType="com.example.ninthhomework.domain.user.model.Characters">
+        UPDATE characters SET name = #{name}, age = #{age} WHERE id = #{id}
+    </update>
 </mapper>
 

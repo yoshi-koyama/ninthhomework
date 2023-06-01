@@ -13,8 +13,8 @@ public interface CharactersService {
 
     public Characters createCharacter(CreateForm createForm);
 
-    //public Characters updateCharacter(UpdateForm updateForm);
+    public Characters updateCharacter(Characters updatecharacter);
 
-    public List<Characters> findById(int id);
+    public Characters findById(int id);
 
 }

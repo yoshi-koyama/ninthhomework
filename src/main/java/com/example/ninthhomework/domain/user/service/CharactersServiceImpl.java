@@ -27,10 +27,9 @@ public class CharactersServiceImpl implements CharactersService {
         }
     }
 
-    public List<Characters> findById(int id) {
+    public Characters findById(int id) {
         return charactersMapper.searchById(id);
     }
-
 
     public Characters createCharacter(CreateForm createForm) {
         Characters characters = new Characters(createForm.getId(), createForm.getName(), createForm.getAge());
@@ -38,5 +37,8 @@ public class CharactersServiceImpl implements CharactersService {
         return characters;
     }
 
-
+    public Characters updateCharacter(Characters updatecharacter) {
+        charactersMapper.updateCharacter(updatecharacter);
+        return updatecharacter;
+    }
 }

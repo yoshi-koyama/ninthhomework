@@ -22,4 +22,5 @@ public class Characters {
     public Integer getAge() {
         return age;
     }
+    
 }
