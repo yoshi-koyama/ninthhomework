@@ -21,30 +21,22 @@ public class CharacterListController {
         this.charactersService = charactersService;
     }
 
-    //IDも含めて全て返す
-    @GetMapping("/characters/all")
-    public List<Characters> selectAllCharacters() {
-        return charactersService.getCharacters().stream().toList();
-    }
-
     //指定したIDの内容のみ返す
     @GetMapping("/characters/{id}")
     public Characters findCharacterById(@PathVariable("id") int id) {
         return charactersService.findById(id);
     }
 
-    //IDは含めずに名前と年齢のみ返す
-    @GetMapping("/characters")
+    // このAPIはController層でResponseクラスへ変換する方法を試すために作りました
+    @GetMapping("/characters-without-id")
     public List<CharactersResponse> selectResponseCharacters() {
         return charactersService.getCharacters().stream().map(y -> new CharactersResponse(y.getName(), y.getAge())).toList();
     }
 
-    //指定された年齢より年上のキャラクターを返す
-    @GetMapping("/characters/age")
-    public List<CharactersResponse> findCharacterByAge(@RequestParam(name = "age", required = false) Integer age) {
-        return charactersService.findByAge(age).stream()
-                .map(y -> new CharactersResponse(y.getName(), y.getAge()))
-                .toList();
+    //クエリに指定がない時は全件、指定ありの時は年齢でフィルターをかけて表示
+    @GetMapping("/characters")
+    public List<Characters> findCharacterByAge(@RequestParam(name = "age", required = false) Integer age) {
+        return charactersService.findByAge(age);
     }
 
     @PostMapping("/characters")

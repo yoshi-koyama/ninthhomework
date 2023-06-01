@@ -3,6 +3,7 @@ package com.example.ninthhomework.domain.user.service;
 import com.example.ninthhomework.controller.CreateForm;
 import com.example.ninthhomework.domain.user.model.Characters;
 import com.example.ninthhomework.mapper.CharactersMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,9 +40,12 @@ public class CharactersServiceImpl implements CharactersService {
 
     public Characters updateCharacter(Characters updatecharacter) {
         Characters characters = charactersMapper.searchById(updatecharacter.getId());
-        if (updatecharacter.getName().isBlank()) {
+        if (StringUtils.isNotBlank(updatecharacter.getName())) {
+            charactersMapper.updateCharacter(updatecharacter);
+        } else {
             updatecharacter.setName(characters.getName());
         }
+
         if (Objects.isNull(updatecharacter.getAge())) {
             updatecharacter.setAge(characters.getAge());
         }
