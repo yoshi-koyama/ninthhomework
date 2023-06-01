@@ -31,7 +31,6 @@ public class CharacterListController {
     //IDは含めずに名前と年齢のみ返す
     @GetMapping("/characters")
     public List<CharactersResponse> charactersResponse() {
-        // return charactersService.getCharacters().stream().map(y -> new CharactersResponse(y.getName(), y.getAge())).toList();
         return charactersService.getCharacters().stream().map(y -> new CharactersResponse(y.getName(), y.getAge())).toList();
     }
 
@@ -52,7 +51,7 @@ public class CharacterListController {
                 .path("/characters/" + characters.getId())
                 .build()
                 .toUri();
-        return ResponseEntity.created(url).body(Map.of("message", "name successfully created"));
+        return ResponseEntity.created(url).body(Map.of("message", "character successfully created"));
     }
 }
 

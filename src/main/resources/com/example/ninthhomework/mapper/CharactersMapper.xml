@@ -9,7 +9,7 @@
     </select>
     <insert id="createCharacter" parameterType="com.example.ninthhomework.domain.user.model.Characters"
             useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO characters(name,age) VALUES(#{name},#{age})
+        INSERT INTO characters(name, age) VALUES(#{name}, #{age})
     </insert>
 </mapper>
 
