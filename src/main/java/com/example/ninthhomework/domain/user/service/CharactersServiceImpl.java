@@ -38,6 +38,13 @@ public class CharactersServiceImpl implements CharactersService {
     }
 
     public Characters updateCharacter(Characters updatecharacter) {
+        Characters characters = charactersMapper.searchById(updatecharacter.getId());
+        if (updatecharacter.getName().isBlank()) {
+            updatecharacter.setName(characters.getName());
+        }
+        if (Objects.isNull(updatecharacter.getAge())) {
+            updatecharacter.setAge(characters.getAge());
+        }
         charactersMapper.updateCharacter(updatecharacter);
         return updatecharacter;
     }

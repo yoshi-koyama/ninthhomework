@@ -1,13 +1,11 @@
 package com.example.ninthhomework.controller;
 
 import com.example.ninthhomework.domain.user.model.Characters;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 public class UpdateForm {
-    @NotBlank
+
     private String name;
-    @NotNull
+
     private Integer age;
 
     public Characters UpdateForm(int id) {
@@ -20,6 +18,8 @@ public class UpdateForm {
     }
 
     public Integer getAge() {
+
         return age;
     }
+
 }
