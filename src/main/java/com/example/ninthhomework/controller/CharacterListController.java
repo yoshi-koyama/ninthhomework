@@ -1,4 +1,4 @@
-package com.example.ninthhomework.Controller;
+package com.example.ninthhomework.controller;
 
 import com.example.ninthhomework.domain.user.model.Characters;
 import com.example.ninthhomework.domain.user.service.CharactersService;

@@ -1,6 +1,6 @@
 package com.example.ninthhomework.domain.user.service;
 
-import com.example.ninthhomework.Controller.CreateForm;
+import com.example.ninthhomework.controller.CreateForm;
 import com.example.ninthhomework.domain.user.model.Characters;
 
 import java.util.List;

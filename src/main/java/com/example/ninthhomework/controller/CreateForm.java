@@ -1,4 +1,4 @@
-package com.example.ninthhomework.Controller;
+package com.example.ninthhomework.controller;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
