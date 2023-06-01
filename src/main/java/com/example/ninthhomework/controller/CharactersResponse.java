@@ -1,4 +1,4 @@
-package com.example.ninthhomework.Controller;
+package com.example.ninthhomework.controller;
 
 public class CharactersResponse {
     private String name;
