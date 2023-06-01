@@ -23,25 +23,25 @@ public class CharacterListController {
 
     //IDも含めて全て返す
     @GetMapping("/characters/all")
-    public List<Characters> charactersServices() {
+    public List<Characters> selectAllCharacters() {
         return charactersService.getCharacters().stream().toList();
     }
 
     //指定したIDの内容のみ返す
     @GetMapping("/characters/{id}")
-    public Characters charactersFindId(@PathVariable("id") int id) {
+    public Characters findCharacterById(@PathVariable("id") int id) {
         return charactersService.findById(id);
     }
 
     //IDは含めずに名前と年齢のみ返す
     @GetMapping("/characters")
-    public List<CharactersResponse> charactersResponse() {
+    public List<CharactersResponse> selectResponseCharacters() {
         return charactersService.getCharacters().stream().map(y -> new CharactersResponse(y.getName(), y.getAge())).toList();
     }
 
     //指定された年齢より年上のキャラクターを返す
     @GetMapping("/characters/age")
-    public List<CharactersResponse> charactersFindAge(@RequestParam(name = "age", required = false) Integer age) {
+    public List<CharactersResponse> findCharacterByAge(@RequestParam(name = "age", required = false) Integer age) {
         return charactersService.findByAge(age).stream()
                 .map(y -> new CharactersResponse(y.getName(), y.getAge()))
                 .toList();
