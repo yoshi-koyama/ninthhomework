@@ -27,6 +27,11 @@ public class CharacterListController {
         return charactersService.getCharacters().stream().toList();
     }
 
+    @GetMapping("/characters/{id}")
+    public List<Characters> charactersid(@PathVariable("id") int id) {
+        return charactersService.findById(id).stream().toList();
+    }
+
 
     //IDは含めずに名前と年齢のみ返す
     @GetMapping("/characters")
@@ -53,5 +58,17 @@ public class CharacterListController {
                 .toUri();
         return ResponseEntity.created(url).body(Map.of("message", "character successfully created"));
     }
+
+//    @PatchMapping("/characters/{id}")
+//    public ResponseEntity<Map<String, String>> update
+//            (@PathVariable("id") int id,
+//             @RequestBody @Validated UpdateForm updateForm, UriComponentsBuilder uriComponentsBuilder) {
+//        Characters characters = charactersService.updateCharacter(updateForm);
+//        URI url = uriComponentsBuilder
+//                .path("/characters/" + characters.getId())
+//                .build()
+//                .toUri();
+//        return ResponseEntity.created(url).body(Map.of("message", "character successfully created"));
+//    }
 }
 

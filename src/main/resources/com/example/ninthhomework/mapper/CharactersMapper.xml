@@ -7,6 +7,9 @@
     <select id="searchByAge" resultType="com.example.ninthhomework.domain.user.model.Characters">
         SELECT * FROM characters WHERE age > #{age}
     </select>
+    <select id="searchById" resultType="com.example.ninthhomework.domain.user.model.Characters">
+        SELECT * FROM characters WHERE id = #{id}
+    </select>
     <insert id="createCharacter" parameterType="com.example.ninthhomework.domain.user.model.Characters"
             useGeneratedKeys="true" keyProperty="id">
         INSERT INTO characters(name, age) VALUES(#{name}, #{age})
