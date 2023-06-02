@@ -7,9 +7,15 @@
     <select id="searchByAge" resultType="com.example.ninthhomework.domain.user.model.Characters">
         SELECT * FROM characters WHERE age > #{age}
     </select>
+    <select id="searchById" resultType="com.example.ninthhomework.domain.user.model.Characters">
+        SELECT * FROM characters WHERE id = #{id}
+    </select>
     <insert id="createCharacter" parameterType="com.example.ninthhomework.domain.user.model.Characters"
             useGeneratedKeys="true" keyProperty="id">
         INSERT INTO characters(name, age) VALUES(#{name}, #{age})
     </insert>
+    <update id="updateCharacter" parameterType="com.example.ninthhomework.domain.user.model.Characters">
+        UPDATE characters SET name = #{name}, age = #{age} WHERE id = #{id}
+    </update>
 </mapper>
 

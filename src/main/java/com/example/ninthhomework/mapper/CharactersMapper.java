@@ -11,6 +11,10 @@ public interface CharactersMapper {
 
     public List<Characters> searchByAge(Integer age);
 
+    public Characters searchById(int id);
+
     public void createCharacter(Characters characters);
+
+    public void updateCharacter(Characters characters);
 
 }

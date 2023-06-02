@@ -12,5 +12,9 @@ public interface CharactersService {
     public List<Characters> findByAge(Integer age);
 
     public Characters createCharacter(CreateForm createForm);
-    
+
+    public Characters updateCharacter(int id, String name, Integer age);
+
+    public Characters findById(int id);
+
 }
