@@ -31,10 +31,6 @@ public class Characters {
         this.name = name;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     public void update(String name, Integer age) {
         if (StringUtils.isNotBlank(name)) {
             this.name = name;
