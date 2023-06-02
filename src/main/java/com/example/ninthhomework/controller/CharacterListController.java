@@ -54,7 +54,7 @@ public class CharacterListController {
     @PatchMapping("/characters/{id}")
     public ResponseEntity<Map<String, String>> update
             (@PathVariable("id") int id, @RequestBody UpdateForm updateForm) {
-        charactersService.updateCharacter(updateForm.UpdateForm(id));
+        charactersService.updateCharacter(id, updateForm.getName(), updateForm.getAge());
         return ResponseEntity.ok(Map.of("message", "character successfully updated"));
     }
 }

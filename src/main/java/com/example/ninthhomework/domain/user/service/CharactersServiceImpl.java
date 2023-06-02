@@ -37,10 +37,10 @@ public class CharactersServiceImpl implements CharactersService {
         return characters;
     }
 
-    public Characters updateCharacter(Characters updateForm) {
-        Characters characters = charactersMapper.searchById(updateForm.getId());
+    public Characters updateCharacter(int id, String name, Integer age) {
+        Characters characters = charactersMapper.searchById(id);
         //IDが存在しないとNullPointerExceptionになるため例外処理を追加する予定です。
-        characters.update(updateForm.getName(), updateForm.getAge());
+        characters.update(name, age);
         charactersMapper.updateCharacter(characters);
         return characters;
     }

@@ -13,7 +13,7 @@ public interface CharactersService {
 
     public Characters createCharacter(CreateForm createForm);
 
-    public Characters updateCharacter(Characters updatecharacter);
+    public Characters updateCharacter(int id, String name, Integer age);
 
     public Characters findById(int id);
 
