@@ -17,4 +17,6 @@ public interface CharactersMapper {
 
     public void updateCharacter(Characters characters);
 
+    public void deleteCharacter(int id);
+
 }

@@ -17,5 +17,8 @@
     <update id="updateCharacter" parameterType="com.example.ninthhomework.domain.user.model.Characters">
         UPDATE characters SET name = #{name}, age = #{age} WHERE id = #{id}
     </update>
+    <delete id="deleteCharacter" parameterType="com.example.ninthhomework.domain.user.model.Characters">
+        DELETE FROM characters WHERE id = #{id}
+    </delete>
 </mapper>
 

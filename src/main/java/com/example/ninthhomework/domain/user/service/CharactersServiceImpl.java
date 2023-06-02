@@ -44,4 +44,8 @@ public class CharactersServiceImpl implements CharactersService {
         charactersMapper.updateCharacter(characters);
         return characters;
     }
+
+    public void deleteCharacter(int id) {
+        charactersMapper.deleteCharacter(id);
+    }
 }
