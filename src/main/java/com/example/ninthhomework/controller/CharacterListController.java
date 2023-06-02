@@ -29,7 +29,7 @@ public class CharacterListController {
 
     // このAPIはController層でResponseクラスへ変換する方法を試すために作りました
     @GetMapping("/characters-without-id")
-    public List<CharactersResponse> selectCharacters() {
+    public List<CharactersResponse> selectResponseCharacters() {
         return charactersService.getCharacters().stream().map(y -> new CharactersResponse(y.getName(), y.getAge())).toList();
     }
 

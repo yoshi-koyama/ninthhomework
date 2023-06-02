@@ -3,7 +3,6 @@ package com.example.ninthhomework.domain.user.service;
 import com.example.ninthhomework.controller.CreateForm;
 import com.example.ninthhomework.domain.user.model.Characters;
 import com.example.ninthhomework.mapper.CharactersMapper;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,18 +37,11 @@ public class CharactersServiceImpl implements CharactersService {
         return characters;
     }
 
-    public Characters updateCharacter(Characters updatecharacter) {
-        Characters characters = charactersMapper.searchById(updatecharacter.getId());
-        if (StringUtils.isNotBlank(updatecharacter.getName())) {
-            charactersMapper.updateCharacter(updatecharacter);
-        } else {
-            updatecharacter.setName(characters.getName());
-        }
-
-        if (Objects.isNull(updatecharacter.getAge())) {
-            updatecharacter.setAge(characters.getAge());
-        }
-        charactersMapper.updateCharacter(updatecharacter);
-        return updatecharacter;
+    public Characters updateCharacter(Characters updateForm) {
+        Characters characters = charactersMapper.searchById(updateForm.getId());
+        //IDが存在しないとNullPointerExceptionになるため例外処理を追加する予定です。
+        characters.update(updateForm.getName(), updateForm.getAge());
+        charactersMapper.updateCharacter(characters);
+        return characters;
     }
 }

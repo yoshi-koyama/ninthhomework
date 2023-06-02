@@ -18,7 +18,6 @@ public class UpdateForm {
     }
 
     public Integer getAge() {
-
         return age;
     }
 
