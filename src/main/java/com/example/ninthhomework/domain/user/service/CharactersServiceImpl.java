@@ -2,8 +2,8 @@ package com.example.ninthhomework.domain.user.service;
 
 import com.example.ninthhomework.controller.CreateForm;
 import com.example.ninthhomework.domain.user.model.Characters;
+import com.example.ninthhomework.exception.ResourceNotFoundException;
 import com.example.ninthhomework.mapper.CharactersMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +11,12 @@ import java.util.Objects;
 
 @Service
 public class CharactersServiceImpl implements CharactersService {
-    @Autowired
-    private CharactersMapper charactersMapper;
+    //@Autowired
+    private final CharactersMapper charactersMapper;
+
+    public CharactersServiceImpl(CharactersMapper charactersMapper) {
+        this.charactersMapper = charactersMapper;
+    }
 
     @Override
     public List<Characters> getCharacters() {
@@ -28,7 +32,9 @@ public class CharactersServiceImpl implements CharactersService {
     }
 
     public Characters findById(int id) {
-        return charactersMapper.searchById(id);
+        if (charactersMapper.searchById(id) == (null)) {
+            throw new ResourceNotFoundException("ID:" + id + "は見つかりませんでした");
+        } else return charactersMapper.searchById(id);
     }
 
     public Characters createCharacter(CreateForm createForm) {
@@ -39,13 +45,18 @@ public class CharactersServiceImpl implements CharactersService {
 
     public Characters updateCharacter(int id, String name, Integer age) {
         Characters characters = charactersMapper.searchById(id);
-        //IDが存在しないとNullPointerExceptionになるため例外処理を追加する予定です。
-        characters.update(name, age);
-        charactersMapper.updateCharacter(characters);
-        return characters;
+        if (characters == null) {
+            throw new ResourceNotFoundException("ID:" + id + "は見つかりませんでした");
+        } else {
+            characters.update(name, age);
+            charactersMapper.updateCharacter(characters);
+            return characters;
+        }
     }
 
     public void deleteCharacter(int id) {
-        charactersMapper.deleteCharacter(id);
+        if (charactersMapper.searchById(id) == (null)) {
+            throw new ResourceNotFoundException("ID:" + id + "は見つかりませんでした");
+        } else charactersMapper.deleteCharacter(id);
     }
 }
