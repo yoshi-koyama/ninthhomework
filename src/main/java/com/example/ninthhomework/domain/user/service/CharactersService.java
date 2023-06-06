@@ -17,4 +17,6 @@ public interface CharactersService {
 
     public Characters findById(int id);
 
+    public void deleteCharacter(int id);
+
 }

@@ -57,5 +57,11 @@ public class CharacterListController {
         charactersService.updateCharacter(id, updateForm.getName(), updateForm.getAge());
         return ResponseEntity.ok(Map.of("message", "character successfully updated"));
     }
+
+    @DeleteMapping("characters/{id}")
+    public ResponseEntity<Map<String, String>> delete(@PathVariable("id") int id) {
+        charactersService.deleteCharacter(id);
+        return ResponseEntity.ok(Map.of("message", "character successfully deleted"));
+    }
 }
 
