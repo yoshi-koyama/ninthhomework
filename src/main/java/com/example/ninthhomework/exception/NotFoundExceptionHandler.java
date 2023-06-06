@@ -11,9 +11,9 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class NotFoundExceptionHandler {
-    @ExceptionHandler(value = ResourceNotFoundException.class)
+    @ExceptionHandler(value = NotFoundException.class)
     public ResponseEntity<Map<String, String>> handlerNotFound(
-            ResourceNotFoundException ex, HttpServletRequest request) {
+            NotFoundException ex, HttpServletRequest request) {
         Map<String, String> body = Map.of(
                 "timestamp", ZonedDateTime.now().toString(),
                 "status", String.valueOf(HttpStatus.NOT_FOUND.value()),
