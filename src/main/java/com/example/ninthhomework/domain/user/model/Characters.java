@@ -39,4 +39,24 @@ public class Characters {
             this.age = age;
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Characters characters = (Characters) obj;
+        return id == characters.id &&
+                age == characters.age &&
+                Objects.equals(name, characters.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, age);
+    }
 }
+
