@@ -26,7 +26,6 @@ class CharactersMapperTest {
     @DataSet(value = "datasets/characters.yml")
     @Transactional
     void 全てのデータが取得できること() {
-        //DBからデータをとってくる
         List<Characters> characters = charactersMapper.findAll();
         assertThat(characters)
                 .hasSize(3)
