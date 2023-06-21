@@ -36,7 +36,7 @@
 | Method                                                       | function                | テスト確認事項                                                                                |
 |--------------------------------------------------------------|-------------------------|----------------------------------------------------------------------------------------|
 | List<Characters> getCharacters()                             | 全キャラクター情報をListとして返す     | ・全てのキャラクターの全項目情報が返ってくること<br>・リストが空の時は空で返すこと                                            |
-| List<Characters> findByAge(Integer age)                      | 指定された年齢より年上のキャラクターのみ返す  | ・指定された年齢より上の年齢のキャラクターを返すこと<br> ・対象データがない時は空で返すこと                                       |
+| List<Characters> findByAge(Integer age)                      | 指定された年齢より年上のキャラクターのみ返す  | ・指定された年齢より上の年齢のキャラクターを返すこと<br> ・年齢の指定がなければ全てのデータを返すこと <br>・指定年齢以上のデータが存在しない時空で返すこと     |
 | Characters findById(int id)                                  | 指定したIDの情報を返す            | ・指定したIDの情報を返すこと<br>・IDが存在しない時はNotFoundExceptionをスローすること　                               |
 | Characters createCharacter(CreateForm createForm)            | 自動採番されたIDに対して入力データを登録する | ・自動採番されたIDに対して入力されたデータが登録できること                                                         |
 | Characters updateCharacter(int id, String name, Integer age) | 指定されたIDデータを更新する         | ・指定されたIDデータが更新されること<br>・年齢だけ名前だけのデータでも更新されること<br> ・IDが存在しない時はNotFoundExceptionをスローすること |
@@ -99,5 +99,4 @@ URLの共通部分：http://localhost:8080
 | POST    | ResponseEntity<Map<String, String>> create(@RequestBody @Validated CreateForm createForm, UriComponentsBuilder uriBuilder)<br> `curl --location 'http://localhost:8080/characters' \--header 'Content-Type: application/json' \--data '{"name" :"メイ","age" : 5}'`      | ・自動採番されたIDに対して入力されたデータが登録できること<br> ・バリデーションが発動していること |
 | PACTH   | ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @RequestBody UpdateForm updateForm)  <br> `curl --location --request PATCH 'http://localhost:8080/characters/21' \--header 'Content-Type: application/json' \--data '{"name" :"メイ","age" : 4}'` | ・指定されたIDデータが更新されること <br> ・IDが存在しない時はエラー情報を返すこと       |
 | DELETE  | ResponseEntity<Map<String, String>> delete(@PathVariable("id") int id) {charactersService.deleteCharacter(id) <br> `curl --location --request DELETE 'http://localhost:8080/characters/21'`                                                                            | ・指定されたIDの情報が削除されること<br> ・IDが存在しない時はエラー情報を返すこと        |
-
 
