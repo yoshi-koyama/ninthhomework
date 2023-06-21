@@ -95,7 +95,7 @@ class CharacterServiceImplTest {
         assertThatExceptionOfType(NotFoundException.class)
                 .isThrownBy(() -> {
                     Character actual = charactersServiceImpl.findById(99);
-                });
+                }).withMessageMatching("ID:99は見つかりませんでした");
         verify(characterMapper, times(1)).searchById(99);
     }
 }
