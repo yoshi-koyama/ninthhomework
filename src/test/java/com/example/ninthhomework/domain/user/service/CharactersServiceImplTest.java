@@ -96,5 +96,6 @@ class CharactersServiceImplTest {
                 .isThrownBy(() -> {
                     Characters actual = charactersServiceImpl.findById(99);
                 });
+        verify(charactersMapper, times(1)).searchById(99);
     }
 }
