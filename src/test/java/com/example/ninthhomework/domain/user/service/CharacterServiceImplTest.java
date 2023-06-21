@@ -54,7 +54,7 @@ class CharacterServiceImplTest {
         List<Character> actual = charactersServiceImpl.findByAge(30);
         assertThat(actual).isEqualTo(characters);
         verify(characterMapper, times(1)).searchByAge(30);
-        verify(characterMapper, times(0)).findAll();
+        verify(characterMapper, never()).findAll();
     }
 
     @Test
@@ -66,7 +66,7 @@ class CharacterServiceImplTest {
         doReturn(characters).when(characterMapper).findAll();
         List<Character> actual = charactersServiceImpl.findByAge(null);
         assertThat(actual).isEqualTo(characters);
-        verify(characterMapper, times(0)).searchByAge(null);
+        verify(characterMapper, never()).searchByAge(null);
         verify(characterMapper, times(1)).findAll();
     }
 
@@ -77,7 +77,7 @@ class CharacterServiceImplTest {
         List<Character> actual = charactersServiceImpl.findByAge(99);
         assertThat(actual).isEqualTo(characters);
         verify(characterMapper, times(1)).searchByAge(99);
-        verify(characterMapper, times(0)).findAll();
+        verify(characterMapper, never()).findAll();
     }
 
     @Test
