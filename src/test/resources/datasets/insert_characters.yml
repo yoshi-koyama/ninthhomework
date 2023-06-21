@@ -8,3 +8,9 @@ characters:
   - id: 3
     name: "tatuo"
     age: 32
+  - id: 4
+    name: "shizuku"
+    age: 14
+  - id: 5
+    name: "umi"
+    age: 16

@@ -25,7 +25,7 @@
 | List<Characters\> findAll()                 | 登録されている全てのデータを取得する<br>SELECT * FROM characters                                          | ・ 全てのデータの全項目を取得できること<br>・データがない時は空として返すこと       |
 | List<Characters\> searchByAge(Integer age)  | 指定された年齢より年上のキャラクターのみ返す<br>SELECT * FROM characters WHERE age > #{age}                   | ・指定された年齢より上の年齢のキャラクターを返すこと<br>・対象データがない時は空で返すこと |
 | Optional<Characters\> searchById(int id)    | 指定したIDの情報を返すこと <br> SELECT * FROM characters WHERE id = #{id}                           | ・指定したIDの情報を返す<br>・IDが存在しない時は空で返す                |
-| void createCharacter(Characters characters) | 自動採番されたIDに対して入力データを登録する<br> INSERT INTO characters(name, age) VALUES(#{name}, #{age})   | ・入力されたデータが登録できること                               |
+| void createCharacter(Characters characters) | 自動採番されたIDに対して入力データを登録する<br> INSERT INTO characters(name, age) VALUES(#{name}, #{age})   | ・入力されたデータが登録できること<br>・IDは既存のものより大きいこと           |
 | void updateCharacter(Characters characters) | 指定されたIDデータを更新する<br> UPDATE characters SET name = #{name}, age = #{age} WHERE id = #{id} | ・指定されたIDの情報を更新できること<br> ・IDが存在しない時は何もしないこと      |
 | void deleteCharacter(int id)                | 指定されたIDに含まれる情報を削除する<br>DELETE FROM characters WHERE id = #{id}                          | ・指定されたIDの情報が削除されること<br>・IDが存在しない時は何もしない         |          |
 
