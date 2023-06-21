@@ -15,6 +15,11 @@ public class Characters {
         this.age = age;
     }
 
+    public Characters(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public int getId() {
         return id;
     }

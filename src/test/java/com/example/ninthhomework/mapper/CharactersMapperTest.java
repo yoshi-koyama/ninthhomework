@@ -2,6 +2,7 @@ package com.example.ninthhomework.mapper;
 
 import com.example.ninthhomework.domain.user.model.Characters;
 import com.github.database.rider.core.api.dataset.DataSet;
+import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -75,5 +76,15 @@ class CharactersMapperTest {
     void 指定したIDが存在しない時空で返すこと() {
         Optional<Characters> characters = charactersMapper.searchById(5);
         assertThat(characters).isEmpty();
+    }
+
+    @Test
+    @DataSet(value = "datasets/characters.yml")
+    @ExpectedDataSet(value = "datasets/insert_characters.yml")
+    @Transactional
+    void 自動採番されたIDに入力されたことが登録できること() {
+        Characters character = new Characters("shizuku", 14);
+        charactersMapper.createCharacter(character);
+        assertThat(character.getId()).isGreaterThan(3);
     }
 }
