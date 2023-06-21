@@ -80,11 +80,50 @@ class CharactersMapperTest {
 
     @Test
     @DataSet(value = "datasets/characters.yml")
-    @ExpectedDataSet(value = "datasets/insert_characters.yml")
+    @ExpectedDataSet(value = "datasets/insert_characters.yml", ignoreCols = "id")
     @Transactional
-    void 自動採番されたIDに入力されたことが登録できること() {
-        Characters character = new Characters("shizuku", 14);
-        charactersMapper.createCharacter(character);
-        assertThat(character.getId()).isGreaterThan(3);
+    void データが登録できそのIDが既存のものより大きいこと() {
+        Characters character4 = new Characters("shizuku", 14);
+        assertThat(character4.getId()).isEqualTo(0);
+
+        charactersMapper.createCharacter(character4);
+        assertThat(character4.getId()).isGreaterThan(0);
+
+        Characters characters5 = new Characters("umi", 16);
+        assertThat(characters5.getId()).isEqualTo(0);
+
+        charactersMapper.createCharacter(characters5);
+        assertThat(characters5.getId()).isGreaterThan(0);
+        
+        assertThat(characters5.getId() > character4.getId());
+
+    }
+
+    @Test
+    @DataSet(value = "datasets/characters.yml")
+    @ExpectedDataSet(value = "datasets/update_characters.yml")
+    void 指定されたIDのデータを更新すること() {
+        charactersMapper.updateCharacter(new Characters(3, "草壁タツオ", 34));
+    }
+
+    @Test
+    @DataSet("datasets/characters.yml")
+    @ExpectedDataSet("datasets/characters.yml")
+    void 指定されたIDが存在しない時は何もしないこと() {
+        charactersMapper.updateCharacter(new Characters(99, "kamide", 99));
+    }
+
+    @Test
+    @DataSet("datasets/characters.yml")
+    @ExpectedDataSet("datasets/delete_characters.yml")
+    void 指定されたIDが削除されること() {
+        charactersMapper.deleteCharacter(3);
+    }
+
+    @Test
+    @DataSet("datasets/characters.yml")
+    @ExpectedDataSet("datasets/characters.yml")
+    void 指定したIDが存在しない時は何もしないこと() {
+        charactersMapper.deleteCharacter(99);
     }
 }

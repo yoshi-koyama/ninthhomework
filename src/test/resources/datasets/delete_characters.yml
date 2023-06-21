@@ -1,0 +1,7 @@
+characters:
+  - id: 1
+    name: "mei"
+    age: 5
+  - id: 2
+    name: "satuki"
+    age: 10

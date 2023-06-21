@@ -11,3 +11,6 @@ characters:
   - id: 4
     name: "shizuku"
     age: 14
+  - id: 5
+    name: "umi"
+    age: 16
