@@ -1,5 +1,6 @@
 package com.example.ninthhomework.domain.user.service;
 
+import com.example.ninthhomework.controller.CreateForm;
 import com.example.ninthhomework.domain.user.model.Character;
 import com.example.ninthhomework.exception.NotFoundException;
 import com.example.ninthhomework.mapper.CharacterMapper;
@@ -97,5 +98,87 @@ class CharacterServiceImplTest {
                     Character actual = charactersServiceImpl.findById(99);
                 }).withMessageMatching("ID:99は見つかりませんでした");
         verify(characterMapper, times(1)).searchById(99);
+    }
+
+    @Test
+    public void 自動採番されたIDに入力データが登録できること() {
+        CreateForm createdCharacter = new CreateForm("mei", 5);
+        Character character = new Character(createdCharacter.getName(), createdCharacter.getAge());
+        doNothing().when(characterMapper).createCharacter(character);
+        charactersServiceImpl.createCharacter(createdCharacter);
+
+        verify(characterMapper, times(1)).createCharacter(character);
+    }
+
+    @Test
+    public void 指定されたIDのデータ更新ができること() {
+        doReturn(Optional.of(new Character("mei", 5))).when(characterMapper).searchById(1);
+
+        Character character = new Character(1, "satuki", 10);
+        Character updateCharacter = charactersServiceImpl.updateCharacter(
+                character.getId(), character.getName(), character.getAge());
+
+        verify(characterMapper, times(1)).searchById(1);
+        verify(characterMapper, times(1)).updateCharacter(updateCharacter);
+    }
+
+    @Test
+    public void 年齢の入力がなくとも更新作業を実施できること() {
+        doReturn(Optional.of(new Character("mei", 5))).when(characterMapper).searchById(1);
+
+        Character character = new Character(1, "satuki", null);
+        Character updateCharacter = charactersServiceImpl.updateCharacter(
+                character.getId(), character.getName(), character.getAge());
+
+        assertThat(updateCharacter.getName()).isEqualTo("satuki");
+        assertThat(updateCharacter.getAge()).isEqualTo(5);
+    }
+
+    @Test
+    public void 名前の入力がなくとも更新作業ができること() {
+        doReturn(Optional.of(new Character("mei", 5))).when(characterMapper).searchById(1);
+
+        Character character = new Character(1, null, 10);
+        Character updateCharacter = charactersServiceImpl.updateCharacter(
+                character.getId(), character.getName(), character.getAge());
+
+        assertThat(updateCharacter.getAge()).isEqualTo(10);
+        assertThat(updateCharacter.getName()).isEqualTo("mei");
+    }
+
+    @Test
+    public void 更新用指定IDが存在しない時例外をスローすること() {
+        doReturn(Optional.empty()).when(characterMapper).searchById(99);
+        Character character = new Character(99, "satuki", 10);
+
+        assertThatExceptionOfType(NotFoundException.class)
+                .isThrownBy(() -> {
+                    charactersServiceImpl.updateCharacter(
+                            character.getId(), character.getName(), character.getAge());
+                }).withMessageMatching("ID:99は見つかりませんでした");
+
+        verify(characterMapper, times(1)).searchById(99);
+        verify(characterMapper, never()).updateCharacter(character);
+    }
+
+    @Test
+    public void 指定されたIDのデータを削除すること() {
+        doReturn(Optional.of(new Character("mei", 5))).when(characterMapper).searchById(1);
+        charactersServiceImpl.deleteCharacter(1);
+
+        verify(characterMapper, times(1)).searchById(1);
+        verify(characterMapper, times(1)).deleteCharacter(1);
+    }
+
+    @Test
+    public void 削除対象のIDが存在しない時は例外をスローすること() {
+        doReturn(Optional.empty()).when(characterMapper).searchById(99);
+
+        assertThatExceptionOfType(NotFoundException.class)
+                .isThrownBy(() -> {
+                    charactersServiceImpl.deleteCharacter(99);
+                }).withMessageMatching("ID:99は見つかりませんでした");
+        verify(characterMapper, times(1)).searchById(99);
+        verify(characterMapper, never()).deleteCharacter(1);
     }
 }
