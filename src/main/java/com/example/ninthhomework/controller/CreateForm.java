@@ -16,6 +16,11 @@ public class CreateForm {
         this.age = age;
     }
 
+    public CreateForm(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public int getId() {
         return id;
     }
