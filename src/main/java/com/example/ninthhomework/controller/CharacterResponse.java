@@ -1,10 +1,10 @@
 package com.example.ninthhomework.controller;
 
-public class CharactersResponse {
+public class CharacterResponse {
     private String name;
     private Integer age;
 
-    public CharactersResponse(String name, Integer age) {
+    public CharacterResponse(String name, Integer age) {
         this.name = name;
         this.age = age;
     }

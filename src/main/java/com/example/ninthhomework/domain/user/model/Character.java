@@ -4,18 +4,18 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 
-public class Characters {
+public class Character {
     private int id;
     private String name;
     private Integer age;
 
-    public Characters(int id, String name, Integer age) {
+    public Character(int id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
     }
 
-    public Characters(String name, Integer age) {
+    public Character(String name, Integer age) {
         this.name = name;
         this.age = age;
     }
@@ -53,10 +53,10 @@ public class Characters {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Characters characters = (Characters) obj;
-        return id == characters.id &&
-                age == characters.age &&
-                Objects.equals(name, characters.name);
+        Character character = (Character) obj;
+        return id == character.id &&
+                age == character.age &&
+                Objects.equals(name, character.name);
     }
 
     @Override
